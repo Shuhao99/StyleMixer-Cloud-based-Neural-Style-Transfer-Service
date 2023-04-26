@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Style Transfer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl7/1L_dstPt3HV5HzF6Gvk/e3E9fdK8WqmlM5l6/5" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Neural Style Transfer</h1>
+        <form id="image-form">
+            <div class="form-group">
+                <label for="content-image">Content Image:</label>
+                <input type="file" class="form-control" id="content-image" name="content-image" accept="image/png, image/jpeg" required>
+            </div>
+            <div class="form-group">
+                <label for="style-image">Style Image:</label>
+                <input type="file" class="form-control" id="style-image" name="style-image" accept="image/png, image/jpeg" required>
+            </div>
+            <div class="form-group">
+                <label for="style-select">Select Style:</label>
+                <select class="form-control" id="style-select">
+                    <option value="49687">Van Gogh Starry Night</option>
+                    <option value="49686">Edvard The Scream</option>
+                    <option value="49685">Japanese The Great Wave</option>
+                    <option value="49684">Picasso</option>
+                    <option value="49683">Chinese Ink Wash</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+        <div id="images" class="row mt-4">
+            <div class="col-md-6">
+                <img id="content-image-display" src="" alt="Content Image" class="img-fluid d-none">
+            </div>
+            <div class="col-md-6">
+                <img id="style-image-display" src="" alt="Style Image" class="img-fluid d-none">
+            </div>
+        </div>
+        <div id="progress" class="progress mt-4 d-none">
+            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+        </div>
+        <div class="mt-4">
+            <img id="result-image" src="" alt="Result Image" class="img-fluid d-none">
+        </div>
+    </div>
+    <script>
+        const input1 = document.getElementById("input1");
+        const input2 = document.getElementById("input2");
+        const processButton = document.getElementById("process");
+        const progressBar = document.getElementById("progress");
+        const selectStyle = document.getElementById("style");
+        const outputImage = document.getElementById("output");
+    
+        async function processImages() {
+            if (selectStyle.value === "") {
+                alert("Please select a style before processing.");
+                return;
+            }
+    
+            const formData = new FormData();
+            formData.append("image1", input1.files[0]);
+            formData.append("image2", input2.files[0]);
+            formData.append("style_id", selectStyle.value);
+    
+            progressBar.style.display = "block";
+            progressBar.value = 0;
+    
+            const response = await fetch("/process_images", {
+                method: "POST",
+                body: formData,
+            });
+    
+            if (response.ok) {
+                const responseData = await response.json();
+                progressBar.value = 100;
+                outputImage.src = responseData.url;
+            } else {
+                alert("An error occurred while processing the images.");
+            }
+    
+            progressBar.style.display = "none";
+        }
+    
+        processButton.addEventListener("click", processImages);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+</body>
+</html>
