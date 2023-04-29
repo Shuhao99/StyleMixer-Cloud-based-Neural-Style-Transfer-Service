@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5F3f3eUvKg9tT1qVfALy0gibrZOP2US1KsOPkH" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 
     <title>Image Processing with Neural Style</title>
 </head>
@@ -54,10 +54,14 @@
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        if (response.result === 'OK') {
+                        var jsonResponse = JSON.parse(response);
+                        console.log(response);
+                        console.log(jsonResponse.result);
+                        if (jsonResponse.result === 'OK') {
                             $('#upload-form').hide();
                             $('#progress-container').show();
-                            getProgress(response.filterjob_id);
+                            console.log(jsonResponse.filterjob_id);
+                            getProgress(jsonResponse.filterjob_id);
                         } else {
                             alert('An error occurred while processing the image. Please try again.');
                         }
@@ -73,17 +77,18 @@
                 url: `/progress/${filterjob_id}`,
                 type: 'POST',
                 success: function (response) {
-                    if (response.result === 'OK') {
-                        const progress = response.progress;
+                    var jsonResponse = JSON.parse(response);
+                    if (jsonResponse.result === 'OK') {
+                        const progress = jsonResponse.progress;
                         $('.progress-bar').css('width', `${progress}%`).attr('aria-valuenow', progress);
-                        if (response.status === 'done') {
+                        if (jsonResponse.status === 'done') {
                             $('#progress-container').hide();
                             $('#result-container').show();
-                            $('#result-image').attr('src', response.url);
+                            $('#result-image').attr('src', jsonResponse.url);
                         } else {
                             setTimeout(function () {
                                 getProgress(filterjob_id);
-                            }, 1000);
+                            }, 20000);
                         }
                     } else {
                         alert('An error occurred while processing the image. Please try again.');
@@ -97,5 +102,5 @@
     });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 

@@ -11,7 +11,9 @@ async fn main() -> std::io::Result<()> {
             .service(upload)
             .service(get_progress)
             .service(Files::new("/images", "./images"))
-            .service(actix_files::Files::new("/", "./static"))
+            .service(actix_files::Files::new("/", "./static")
+                .index_file("index.html")
+            )
     })
 
     .bind("127.0.0.1:8080")?

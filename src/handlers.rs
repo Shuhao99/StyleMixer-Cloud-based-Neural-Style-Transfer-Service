@@ -1,4 +1,4 @@
-use actix_multipart::{Field, Multipart};
+`use actix_multipart::{Field, Multipart};
 use futures::{StreamExt, TryStreamExt};
 use reqwest::multipart::{Form, Part};
 use actix_web::{post, web, HttpResponse, Result};
@@ -8,7 +8,6 @@ use std::fs::File;
 use std::io::Write;
 use std::io::Read;
 use uuid::Uuid;
-use tokio_util::codec::{BytesCodec, FramedRead};
 
 #[derive(Serialize, Deserialize)]
 pub struct NeuralStyleResponse {
@@ -29,11 +28,11 @@ pub async fn upload(
         let mut field = item.unwrap();
         let content_disposition = field.content_disposition();
         let name = content_disposition.get_name().unwrap();
-
+        print!("Enter");
         if name == "image" {
             let filename = format!("{}.png", Uuid::new_v4().to_string());
             let filepath = format!("./images/{}", &filename);
-
+            print!("{}", filepath);
             //fix image receive 
             let mut file = File::create(&filepath).unwrap();
             // let mut f = web::block(move || fs::File::create(&filepath)).await.unwrap();
@@ -55,7 +54,7 @@ pub async fn upload(
     }
 
     if let (Some(file_path), Some(style_id)) = (file_path, style_id) {
-        let response = call_neural_style_api(&client, &file_path, &style_id).await;
+        let response = call_neural_style_api(&client, &file_path, style_id).await;
         match response {
             Ok(neural_style_response) => {
                 Ok(HttpResponse::Ok().json(neural_style_response))
@@ -70,17 +69,18 @@ pub async fn upload(
 async fn call_neural_style_api(
     client: &Client,
     file_path: &str,
-    style_id: &str,
+    style_id: String,
 ) -> Result<NeuralStyleResponse, Box<dyn std::error::Error>> {
     let mut file = File::open(file_path).unwrap();
     let mut contents = Vec::new();
     file.read_to_end(&mut contents)?;
-   
+    // .part("photo", reqwest::multipart::Part::bytes(contents))?
     let form = reqwest::multipart::Form::new()
         .part("photo", reqwest::multipart::Part::bytes(contents))
         .text("api_key", "VCGKSUTDMUCYMOHTEPAYYBGGKTCWBXCQGCTNGPIADSKRSRYJ")
         .text("style_id", style_id);
 
+       
     let res = client
         .post("https://neuralstyle.art/api.json")
         .multipart(form)
