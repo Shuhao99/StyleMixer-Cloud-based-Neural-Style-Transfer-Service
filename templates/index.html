@@ -8,6 +8,50 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 
     <title>Image Processing with Neural Style</title>
+
+    <style>
+        .dropbtn {
+                background-color: #3e8e41;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 
+                0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: inline-block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -17,15 +61,65 @@
                 <label for="image" class="form-label">Upload Image</label>
                 <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
             </div>
+            <h4>Example stylized images:</h4>
+            <div id="banner" class="mt-4" style="overflow: hidden; display: flex; justify-content:space-around;">
+                <div class="" style="max-width: 20%; max-height: 20%;">
+                    <img id="example" src="" class="example-img" width="300" height="200">
+                </div>
+                <div class="" style="max-width: 20%; max-height: 20%;">
+                    <img id="example" src="" class="example-img" width="300" height="200">
+                </div>
+                <div class="" style="max-width: 20%; max-height: 20%;">
+                    <img id="example" src="" class="example-img" width="300" height="200">
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Style List
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">
+                        <img src=
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+                        width="200" height="200"> Van Gogh Starry Night</a>
+                    <a href="#">
+                        <img src=
+                        "https://www.edvardmunch.org/images/paintings/the-scream.jpg"
+                        width="200" height="200"> Edvard The Scream</a>
+                    <a href="#">
+                        <img src=
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/1920px-Tsunami_by_hokusai_19th_century.jpg"
+                        width="200" height="200"> Japanese The Great Wave</a>
+
+                    <a href="#">
+                        <img src=
+                        "https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/antimonocromatismo.jpg"
+                        width="200" height="150"> Antimonocromatismo</a>
+                    <a href="#">
+                        <img src=
+                        "https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/flower_of_life.jpg"
+                        width="200" height="200"> Flower_of_life</a>
+                    <a href="#">
+                        <img src=
+                        "https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/sketch.png"
+                        width="200" height="200"> Sketch</a>
+                    <a href="#">
+                        <img src=
+                        "https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/mondrian.jpg""
+                        width="200" height="200"> Mondrian</a>
+                </div>
+            </div>
+            <br />
             <div class="mb-3">
-                <label for="style" class="form-label">Choose a Style</label>
+                <label for="style" class="form-label">Choose a Given Style</label>
                 <select class="form-select" id="style" name="style" required>
                     <option value="">Select a style...</option>
                     <option value="49687">Van Gogh Starry Night</option>
                     <option value="49686">Edvard The Scream</option>
                     <option value="49685">Japanese The Great Wave</option>
                     <option value="49684">Picasso</option>
-                    <option value="49683">Chinese Ink Wash</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
