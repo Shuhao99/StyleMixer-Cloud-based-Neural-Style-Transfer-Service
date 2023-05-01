@@ -12,11 +12,15 @@ build:
 	docker build -t final .
 
 # 3. run docker
-run-docker:
+rundocker:
 	docker run -it --rm -p 8080:8080 final
 
-all: 
+run:
 	python3 main.py
+
+all: 
+	all: build rundocker run
+
 
 # format:
 # 	cargo fmt --quiet
