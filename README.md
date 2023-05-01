@@ -49,6 +49,17 @@ The solution will set up a CodePipeline that pulls the code from GitHub and buil
 
     <img src="https://user-images.githubusercontent.com/33047941/235516935-8f37316e-d14b-4611-9c8f-243da0184b43.png" alt="alt text" width="70%" height="70%">
 
+## Monitor
+![alarm](image/Snip20230501_41.png)
+* Create two alarm in `AWS CloudWatch` to monitor the CPU utilization and memory utilization and request amount of the service. 
+
+* If the CPU utilization or memory utilization is higher than 80% for 5 minutes, the alarm will be triggered and send a notification to our email.
+
+![mem](image/Snip20230501_43.png)
+
+* If the request amount is higher than 100 for 5 minutes, the alarm will be triggered and send a notification to our email.
+
+![request](image/Snip20230501_42.png)
 
 ## Usage
 - Please use **High Resolution images** or it may block our API
@@ -63,3 +74,10 @@ The solution will set up a CodePipeline that pulls the code from GitHub and buil
 ![27db7a6d8dea9f1d9cfcfaf2022283b](https://user-images.githubusercontent.com/33047941/235516081-f3e49077-7a11-441c-a645-75e808aec928.png)
 
 
+<<<<<<< HEAD
+=======
+## References
+
+* [rust-cli-template](https://github.com/kbknapp/rust-cli-template)
+
+>>>>>>> 266173decb930ba0e5de602c70702310afbdc111
