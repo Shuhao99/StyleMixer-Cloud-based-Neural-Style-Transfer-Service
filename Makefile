@@ -1,24 +1,36 @@
-rust-version:
-	@echo "Rust command-line utility versions:"
-	rustc --version 			#rust compiler
-	cargo --version 			#rust package manager
-	rustfmt --version			#rust code formatter
-	rustup --version			#rust toolchain manager
-	clippy-driver --version		#rust linter
+# rust-version:
+# 	@echo "Rust command-line utility versions:"
+# 	rustc --version 			#rust compiler
+# 	cargo --version 			#rust package manager
+# 	rustfmt --version			#rust code formatter
+# 	rustup --version			#rust toolchain manager
+# 	clippy-driver --version		#rust linter
 
-format:
-	cargo fmt --quiet
 
-lint:
-	cargo clippy --quiet
+# 2. images
+build:
+	docker build -t final .
 
-test:
-	cargo test --quiet
+# 3. run docker
+run-docker:
+	docker run -it --rm -p 8080:8080 final
 
-run:
-	cargo run
+all: 
+	python3 main.py
 
-release:
-	cargo build --release
+# format:
+# 	cargo fmt --quiet
 
-all: format lint test run
+# lint:
+# 	cargo clippy --quiet
+
+# test:
+# 	cargo test --quiet
+
+# run:
+# 	cargo run
+
+# release:
+# 	cargo build --release
+
+# all: format lint test run
