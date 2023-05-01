@@ -1,10 +1,10 @@
 # StyleMixer: Cloud-based Neural Style Transfer Service
 
-### Introduction
+## Introduction
 
 In this project, we build a cloud-based service for neural style transfer and deploy our service to the AWS AppRunner [[Link](https://ktthnbhkmf.us-east-1.awsapprunner.com/)]. The motivation of this project is based on one of our previously pubished paper "Style Mixer: Semantic-aware Multi-Style Transfer Network" [[Paper](https://arxiv.org/abs/1910.13093)] [[Github](https://github.com/zxhuang97/Official-implementation-StyleMixer)]. Specifically, our application enables users to enjoy powerful functions of style transfer to generate fancy images via operations as simple as only button-clicks.
 
-### Background
+## Background
 
 Thanks to the development of computer vision and graphics technology, recent years have witnessed an increasing number of photo apps for image editing. Style Transfer, which takes a content image and a style image as inputs to synthesize a stylized image, has become more and more popular. Given a photo of women (upper left corner) and art works with different styles (bottom left corner), the algorithm can generate stylized versions of the same women without compromising its appearance. 
 
@@ -12,7 +12,7 @@ Thanks to the development of computer vision and graphics technology, recent yea
 
 Typically, the script of style transfer requires complicated operations and involves deep neural network for image processing (figure below illustrates a standard pipeline of style transfer). However, this is not user-friendly to users without computer science background. To this end, we build this application and deploy it as a cloud-based service to allow all sorts of users to enjoy the charm of style transfer. Generally speaking, with our StyleMixer, you can upload your own image and choose a style you like as provided by our service. Then, you will be able to get a stylized version of your uploaded content image.
 
-![img](./assets/2.png)
+<img src="./assets/2.png" alt="alt text" width="80%" height="80%">
 
 Here's an example of content image (a photo of duke!!!), style image (from Wikiart) and stylized image.
 
@@ -20,7 +20,7 @@ Here's an example of content image (a photo of duke!!!), style image (from Wikia
 ## Architecure
 The solution will set up a CodePipeline that pulls the code from GitHub and builds the codes, then stores the container image artifact in Amazon ECR. App Runner is configured to trigger automatic deployments once a new image is pushed to ECR. Python applications running in App Runner will stream the log to Amazon CloudWatch.
 
-<img src="https://user-images.githubusercontent.com/33047941/235515401-d226f7f3-6cbb-4a96-aed7-e1dfac4757b1.png" alt="alt text" width="70%" height="70%">
+<img src="https://user-images.githubusercontent.com/33047941/235515401-d226f7f3-6cbb-4a96-aed7-e1dfac4757b1.png" alt="alt text" width="80%" height="70%">
   
 
 ## Implements
@@ -33,7 +33,7 @@ The solution will set up a CodePipeline that pulls the code from GitHub and buil
     - For the Rust version, we used the ```actix Web``` framework to handle the frontend request in a asynchromous way and respond the frontend request with JSON data.
     - For the Python version, we used ```Flask``` to handle the frontend requests.
 
-- This application can read the user uploaded images at frontend and query the progress and output at backend.
+- This application can read the user uploaded images at frontend and query the progress and output via our API at backend.
 
 ## Deployment
 - Create ECR and build docker image in Cloud9 environment.
