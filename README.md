@@ -53,6 +53,7 @@ The solution will set up a CodePipeline that pulls the code from GitHub and buil
 ## Usage
 - Please use **High Resolution images** or it may block our API
 - It may take some times to render the output **DON'T REFRESH THE PAGE** while waiting
+- Project address: https://ktthnbhkmf.us-east-1.awsapprunner.com/
 
 ![21f4b46bc76d3b3710434e81a4d3969](https://user-images.githubusercontent.com/33047941/235515932-28ca208b-9dfe-4164-8688-bb35d1b041db.png)
 
@@ -62,6 +63,3 @@ The solution will set up a CodePipeline that pulls the code from GitHub and buil
 ![27db7a6d8dea9f1d9cfcfaf2022283b](https://user-images.githubusercontent.com/33047941/235516081-f3e49077-7a11-441c-a645-75e808aec928.png)
 
 
-## References
-
-* [rust-cli-template](https://github.com/kbknapp/rust-cli-template)
