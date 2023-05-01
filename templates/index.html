@@ -10,6 +10,11 @@
     <title>Image Processing with Neural Style</title>
 
     <style>
+        select option[data-icon] {
+            padding-left: 20px; /* adjust the padding to move the text to the right of the image */
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
         .dropbtn {
                 background-color: #3e8e41;
                 color: white;
@@ -64,19 +69,19 @@
             <h4>Example stylized images:</h4>
             <div id="banner" class="mt-4" style="overflow: hidden; display: flex; justify-content:space-around;">
                 <div class="" style="max-width: 20%; max-height: 20%;">
-                    <img id="example" src="" class="example-img" width="300" height="200">
+                    <img id="example" src="https://github.com/Shuhao99/image_repo/blob/main/test.jpeg?raw=true" class="example-img" width="300" height="200">
                 </div>
                 <div class="" style="max-width: 20%; max-height: 20%;">
-                    <img id="example" src="" class="example-img" width="300" height="200">
+                    <img id="example" src="https://raw.githubusercontent.com/Shuhao99/image_repo/main/stylized2.jpg" class="example-img" width="300" height="200">
                 </div>
                 <div class="" style="max-width: 20%; max-height: 20%;">
-                    <img id="example" src="" class="example-img" width="300" height="200">
+                    <img id="example" src="https://raw.githubusercontent.com/Shuhao99/image_repo/main/stylelized.jpg" class="example-img" width="300" height="200">
                 </div>
             </div>
-            <br />
+        
             <br />
             <div class="dropdown">
-                <button class="dropbtn">
+                <button class="btn btn-primary">
                     Style List
                 </button>
                 <div class="dropdown-content">
@@ -107,7 +112,7 @@
                         width="200" height="200"> Sketch</a>
                     <a href="#">
                         <img src=
-                        "https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/mondrian.jpg""
+                        "https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/mondrian.jpg"
                         width="200" height="200"> Mondrian</a>
                 </div>
             </div>
@@ -115,11 +120,15 @@
             <div class="mb-3">
                 <label for="style" class="form-label">Choose a Given Style</label>
                 <select class="form-select" id="style" name="style" required>
-                    <option value="">Select a style...</option>
-                    <option value="49687">Van Gogh Starry Night</option>
-                    <option value="49686">Edvard The Scream</option>
-                    <option value="49685">Japanese The Great Wave</option>
-                    <option value="49684">Picasso</option>
+                    
+                    <option value="49687" data-icon="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg">Van Gogh Starry Night</option>
+                    <option value="49686" data-icon="https://www.edvardmunch.org/images/paintings/the-scream.jpg">Edvard The Scream</option>
+                    <option value="49685" data-icon="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/1920px-Tsunami_by_hokusai_19th_century.jpg">Japanese The Great Wave</option>
+
+                    <option value="49797" data-icon="https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/antimonocromatismo.jpg">Antimonocromatismo</option>
+                    <option value="49798" data-icon="https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/flower_of_life.jpg">Flower_of_life</option>
+                    <option value="49800" data-icon="https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/sketch.png">Sketch</option>
+                    <option value="49799" data-icon="https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/mondrian.jpg">Mondrian</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -134,6 +143,15 @@
             <h4>Result</h4>
             <img id="result-image" src="" alt="Processed Image" class="img-fluid">
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+
     </div>
 
     <script>
