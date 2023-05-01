@@ -9,6 +9,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/health')
+def health_check():
+    return jsonify({'status': 'ok'})
+
 @app.route('/upload', methods=['POST'])
 def upload():
     
