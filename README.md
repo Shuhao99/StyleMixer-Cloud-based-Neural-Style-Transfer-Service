@@ -15,6 +15,29 @@ Typically, the script of style transfer requires complicated operations and invo
 <img src="./assets/2.png" alt="alt text" width="80%" height="80%">
 
 Here's an example of content image (a photo of duke!!!), style image (from Wikiart) and stylized image.
+- Photo of Duke:
+
+    <img src="https://user-images.githubusercontent.com/33047941/235516158-3f79bc73-f18f-43d7-b7a4-3ca5d63b5e9f.jpg" alt="alt text" width="80%" height="80%">
+
+- style image:
+
+    <img src="https://raw.githubusercontent.com/xunhuang1995/AdaIN-style/master/input/style/flower_of_life.jpg" alt="alt text" width="30%" height="30%">
+
+- The output:
+
+    <img src="https://user-images.githubusercontent.com/33047941/235516081-f3e49077-7a11-441c-a645-75e808aec928.png" alt="alt text" width="90%" height="90%">
+
+## Usage
+- Please use **High Resolution images** or it may block our API
+- It may take some times to render the output **DON'T REFRESH THE PAGE** while waiting
+- Project address: https://ktthnbhkmf.us-east-1.awsapprunner.com/
+
+- If you hover cursor over the "Style List" button, you can overview the style images.
+- Example layout while processing
+
+    <img src="https://user-images.githubusercontent.com/33047941/235515932-28ca208b-9dfe-4164-8688-bb35d1b041db.png" alt="alt text" width="80%" height="80%">
+
+
 
 
 ## Architecure
@@ -35,6 +58,7 @@ The solution will set up a CodePipeline that pulls the code from GitHub and buil
 
 - This application can read the user uploaded images at frontend and query the progress and output via our API at backend.
 
+
 ## Deployment
 - Create ECR and build docker image in Cloud9 environment.
 
@@ -50,34 +74,20 @@ The solution will set up a CodePipeline that pulls the code from GitHub and buil
     <img src="https://user-images.githubusercontent.com/33047941/235516935-8f37316e-d14b-4611-9c8f-243da0184b43.png" alt="alt text" width="70%" height="70%">
 
 ## Monitor
-![alarm](image/Snip20230501_41.png)
+
 * Create two alarm in `AWS CloudWatch` to monitor the CPU utilization and memory utilization and request amount of the service. 
+    
+    <img src="image/Snip20230501_41.png" alt="alt text" width="80%" height="80%">
 
 * If the CPU utilization or memory utilization is higher than 80% for 5 minutes, the alarm will be triggered and send a notification to our email.
 
-![mem](image/Snip20230501_43.png)
+    <img src="image/Snip20230501_43.png" alt="alt text" width="80%" height="80%">
+
 
 * If the request amount is higher than 100 for 5 minutes, the alarm will be triggered and send a notification to our email.
 
-![request](image/Snip20230501_42.png)
-
-## Usage
-- Please use **High Resolution images** or it may block our API
-- It may take some times to render the output **DON'T REFRESH THE PAGE** while waiting
-- Project address: https://ktthnbhkmf.us-east-1.awsapprunner.com/
-
-![21f4b46bc76d3b3710434e81a4d3969](https://user-images.githubusercontent.com/33047941/235515932-28ca208b-9dfe-4164-8688-bb35d1b041db.png)
-
-![9101ea9542c03cd6b10f15a46182a70](https://user-images.githubusercontent.com/33047941/235516158-3f79bc73-f18f-43d7-b7a4-3ca5d63b5e9f.jpg)
+    <img src="image/Snip20230501_42.png" alt="alt text" width="80%" height="80%">
 
 
-![27db7a6d8dea9f1d9cfcfaf2022283b](https://user-images.githubusercontent.com/33047941/235516081-f3e49077-7a11-441c-a645-75e808aec928.png)
 
 
-<<<<<<< HEAD
-=======
-## References
-
-* [rust-cli-template](https://github.com/kbknapp/rust-cli-template)
-
->>>>>>> 266173decb930ba0e5de602c70702310afbdc111
